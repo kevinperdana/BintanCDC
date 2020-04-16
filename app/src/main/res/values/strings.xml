@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">Bintan CDC</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+
+    <!-- DAFTAR KECAMATAN -->
+    <string-array name="kecamatan_item">
+        <item>Bintan Pesisir</item>
+        <item>Bintan Timur</item>
+        <item>Bintan Utara</item>
+        <item>Gunung Kijang</item>
+        <item>Mantang</item>
+        <item>Seri Kuala Lobam</item>
+        <item>Tambelan</item>
+        <item>Telok Sebong</item>
+        <item>Teluk Bintan</item>
+        <item>Toapaya</item>
+    </string-array>
+
+    <!-- DAFTAR KELURAHAN -->
+    <string-array name="kelurahan_item">
+        <item>Air Gelubi</item>
+        <item>Kelong</item>
+        <item>Mapur</item>
+        <item>Numbing</item>
+        <item>Gunung Lengkuas</item>
+        <item>Kijang Kota</item>
+        <item>Sungai Enam</item>
+        <item>Sungai Lekop</item>
+        <item>Lancang Kuning</item>
+        <item>Tanjung Uban Kota</item>
+        <item>Tanjung Uban Selatan</item>
+        <item>Tanjung Uban Timur</item>
+        <item>Gunung Kijang</item>
+        <item>Malang Rapat</item>
+        <item>Teluk Bakau</item>
+        <item>Kawal</item>
+        <item>Dendun</item>
+        <item>Mantang Baru</item>
+        <item>Mantang Besar</item>
+        <item>Mantang Lama</item>
+        <item>Busung</item>
+        <item>Kuala Sempang</item>
+        <item>Teluk Sasah</item>
+        <item>Tanjung Permai</item>
+        <item>Teluk Lobam</item>
+        <item>Kelong</item>
+        <item>Batu Lepuk</item>
+        <item>Kampung Hilir</item>
+        <item>Kampung Melayu</item>
+        <item>Kukup</item>
+        <item>Pengikik</item>
+        <item>Pulau Mentebung</item>
+        <item>Pulau Pinang</item>
+        <item>Teluk Sekuni</item>
+        <item>Berakit</item>
+        <item>Ekang Anculai</item>
+        <item>Pengudang</item>
+        <item>Sebong Lagoi</item>
+        <item>Sebong Pereh</item>
+        <item>Sri Bintan</item>
+        <item>Kota Baru</item>
+        <item>Bintan Buyu</item>
+        <item>Pangkil</item>
+        <item>Penaga</item>
+        <item>Pengujan</item>
+        <item>Tembeling</item>
+        <item>Tembeling Tanjung</item>
+        <item>Toapaya</item>
+        <item>Toapaya Utara</item>
+        <item>Toapaya Selatan</item>
+    </string-array>
+</resources>

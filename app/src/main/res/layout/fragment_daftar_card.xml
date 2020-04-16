@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+
+        card_view:cardCornerRadius="4dp"
+        card_view:cardElevation="0dp"
+        card_view:contentPadding="0dp">
+
+        <RelativeLayout
+            style="@style/GradientCardView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvNamaODP"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:focusable="false"
+                android:paddingLeft="8dp"
+                android:paddingTop="6dp"
+                android:paddingRight="8dp"
+                android:text="Nama ODP"
+                android:textColor="@color/colorWhite" />
+
+            <TextView
+                android:id="@+id/tvNoHP"
+                style="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvNamaODP"
+                android:focusable="false"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="No. HP"
+                android:textColor="@color/colorWhite" />
+
+            <TextView
+                android:id="@+id/tvAlamat"
+                style="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvNoHP"
+                android:focusable="false"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="Alamat"
+                android:textColor="@color/colorWhite" />
+
+            <ImageView
+                android:id="@+id/fotoProfil"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fotoprofilkosong" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

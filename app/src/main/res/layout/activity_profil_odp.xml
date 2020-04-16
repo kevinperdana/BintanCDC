@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfilODPActivity"
+    android:background="@color/colorWhite" >
+
+    <RelativeLayout
+        android:id="@+id/relatif1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/activity_vertical_margin"
+            android:src="@drawable/fotoprofilkosong"
+            android:layout_marginTop="@dimen/activity_vertical_margin" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvNamaODP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="120dp"
+                android:gravity="right"
+                android:text="Nama ODP"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/colorBlack" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- MASA KARANTINA -->
+
+    <RelativeLayout
+        android:background="@color/colorGreen"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relatif1"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:id="@+id/tvMulaiKarantina"
+            style="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:focusable="false"
+            android:paddingLeft="8dp"
+            android:paddingTop="6dp"
+            android:paddingRight="8dp"
+            android:text="Mulai Karantina"
+            android:textColor="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/tvMasaKarantina"
+            style="@style/Base.TextAppearance.AppCompat.Large"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMulaiKarantina"
+            android:focusable="false"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="Masa Karantina"
+            android:textColor="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/tvTotalHari"
+            style="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMasaKarantina"
+            android:focusable="false"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="Total Hari"
+            android:textColor="@color/colorWhite" />
+
+        <View
+            android:background="@color/colorOrange"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop">
+
+        </View>
+
+    </RelativeLayout>
+
+</RelativeLayout>

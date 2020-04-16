@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TambahFragment"
+    android:background="@color/colorWhite">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/lin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:id="@+id/a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="NIK"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etNIK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold"
+            android:text="Nama ODP"
+            android:id="@+id/b"
+            android:textColor="@color/colorBlack"
+            android:layout_marginLeft="5dp"/>
+
+        <EditText
+            android:id="@+id/etNamaODP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold"
+            android:text="No. HP"
+            android:id="@+id/c"
+            android:textColor="@color/colorBlack"
+            android:layout_marginLeft="5dp"/>
+
+        <EditText
+            android:id="@+id/etNoHP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold"
+            android:text="Alamat"
+            android:id="@+id/d"
+            android:textColor="@color/colorBlack"
+            android:layout_marginLeft="5dp"/>
+
+        <EditText
+            android:id="@+id/etAlamat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold"
+            android:text="Kecamatan"
+            android:id="@+id/e"
+            android:textColor="@color/colorBlack"
+            android:layout_marginLeft="5dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerKecamatan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/SpinnerStyle" />
+            <!--android:entries="@array/kecamatan_item"-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold"
+            android:text="Kelurahan"
+            android:id="@+id/f"
+            android:textColor="@color/colorBlack"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+        <Spinner
+            android:id="@+id/spinnerKelurahan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/SpinnerStyle" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Simpan"
+            android:id="@+id/btnSimpan"
+            android:background="@color/colorAccent"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+
+    </LinearLayout>
+
+</FrameLayout>
