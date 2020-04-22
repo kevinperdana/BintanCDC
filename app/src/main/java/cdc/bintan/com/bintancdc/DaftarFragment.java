@@ -1,8 +1,11 @@
 package cdc.bintan.com.bintancdc;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +52,8 @@ public class DaftarFragment extends Fragment {
     private ArrayList<DaftarFragmentSerialisasi> daftarFragmentSerialisasi;
     private ListView lvODP;
 
+    SwipeRefreshLayout refreshLayout;
+
 
     public DaftarFragment() {
         // Required empty public constructor
@@ -61,6 +66,24 @@ public class DaftarFragment extends Fragment {
         // Inflate the layout for this fragment
         final View rootView = inflater.inflate(R.layout.fragment_daftar, container, false);
 
+        dataPasien();
+
+        // REFRESH DATA PASIEN
+        refreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refreshLayout);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                dataPasien();
+                refreshLayout.setRefreshing(false);
+            }
+        });
+
+
+
+        return rootView;
+    }
+
+    private void dataPasien() {
         // AMBIL TOKEN SEKARANG
         ambilTokenSekarang = MainActivity.tokenSekarang;
         Log.d(LOGATS, ambilTokenSekarang);
@@ -107,7 +130,7 @@ public class DaftarFragment extends Fragment {
                     FunDapter<DaftarFragmentSerialisasi> adapter = new FunDapter<>(
                             getActivity(), daftarFragmentSerialisasi, R.layout.fragment_daftar_card, dict);
 
-                    lvODP = (ListView) rootView.findViewById(R.id.lvODP);
+                    lvODP = (ListView) getView().findViewById(R.id.lvODP);
                     lvODP.setAdapter(adapter);
                     //lvODP.setOnItemClickListener(this);
 
@@ -116,25 +139,6 @@ public class DaftarFragment extends Fragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                /*
-                try {
-                    JSONArray jsonArray = new JSONArray(response);
-                    JSONObject jsonObject = jsonArray.getJSONObject(0);
-
-                    String status = jsonObject.getString("status");
-                    String pid = jsonObject.getString("pid");
-                    Log.d(LOGUSERPASIEN, jsonObject.names());
-
-                    JSONArray jsonArrayUsersPasien = jsonObject.getJSONArray("userspasien");
-                    for (int i=0; i<jsonArrayUsersPasien.length(); i++){
-                        //JSONObject jsonObjectUsersPasien = jsonArrayUsersPasien.getJSONObject(i);
-
-                        //String nik = jsonObjectUsersPasien.getString("username");
-
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }*/
             }
         }, new Response.ErrorListener() {
             @Override
@@ -152,8 +156,5 @@ public class DaftarFragment extends Fragment {
             }
         };
         requestQueue.add(stringRequest);
-
-        return rootView;
     }
-
 }

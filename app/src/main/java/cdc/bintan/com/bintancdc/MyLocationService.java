@@ -1,5 +1,6 @@
 package cdc.bintan.com.bintancdc;
 
+import android.app.Notification;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -16,6 +17,7 @@ public class MyLocationService extends BroadcastReceiver {
     //final String LOGBG = "CekBG";
 
     public static final String ACTION_PROCESS_UPDATE = "cdc.bintan.com.bintancdc.UPDATE_LOCATION";
+    public static String location_string, latSekarang, lngSekarang;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -25,16 +27,28 @@ public class MyLocationService extends BroadcastReceiver {
                 LocationResult result = LocationResult.extractResult(intent);
                 if (result != null){
                     Location location = result.getLastLocation();
-                    String location_string = new StringBuilder(""+location.getLatitude())
+                    /*location_string = new StringBuilder(""+location.getLatitude())
                             .append("/")
                             .append(location.getLongitude())
-                            .toString();
+                            .toString();*/
+                    latSekarang = String.valueOf(location.getLatitude());
+                    lngSekarang = String.valueOf(location.getLongitude());
                     try {
                         //Toast.makeText(context, location_string, Toast.LENGTH_SHORT).show();
-                        Log.d(LOGFGBG, location_string);
+                        //NotificationService.input2 = location_string;
+
+                        // FOREGROUND UPDATE
+                        Log.d(LOGFGBG, latSekarang+" "+lngSekarang);
+
+
+                        ProfilODPActivity.getInstance().updateTextView(latSekarang, lngSekarang);
                     } catch (Exception e) {
-                        //Toast.makeText(context, location_string, Toast.LENGTH_SHORT).show();
-                        Log.d(LOGFGBG, location_string);
+                        //Toast.makeText(context, e+"", Toast.LENGTH_SHORT).show();
+                        //NotificationService.input2 = location_string;
+
+                        // BACKGROUND UPDATE
+                        Log.d(LOGFGBG, latSekarang+" "+lngSekarang);
+                        ProfilODPActivity.getInstance().updateTextView(latSekarang, lngSekarang);
                     }
                 }
             }

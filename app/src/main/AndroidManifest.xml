@@ -3,11 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="cdc.bintan.com.bintancdc">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,6 +19,14 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="@android:icon">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDtYSbWah8tHDyu3WUzOdiXKHnX-7WYuzg" />
+        <meta-data
+            android:name="com.google.android.maps.API_KEY"
+            android:value="AIzaSyDtYSbWah8tHDyu3WUzOdiXKHnX-7WYuzg" />
+
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -31,13 +42,14 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ProfilODPActivity"
+            android:theme="@style/Base.Theme.AppCompat.Light"
             android:label="Profil ODP" />
         <activity
             android:name=".LoginODPActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <receiver
             android:name=".MyLocationService" />
+        <service android:name=".NotificationService" />
     </application>
 
 </manifest>

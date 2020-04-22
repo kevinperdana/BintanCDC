@@ -2,7 +2,9 @@ package cdc.bintan.com.bintancdc;
 
 import android.Manifest;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Response;
@@ -40,28 +43,30 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
     final String password = "1234";
     public static String tokenSekarang;
 
-    static MainActivity instance;
-    LocationRequest locationRequest;
-    FusedLocationProviderClient fusedLocationProviderClient;
-
-    public static MainActivity getInstance() {
-        return instance;
-    }
+    private boolean loggedIn = false;
+    EditText etUsername, etPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        instance = this;
+        etUsername = (EditText) findViewById(R.id.etUsername);
+        etPassword = (EditText) findViewById(R.id.etPassword);
 
         // LOGIN PETUGAS
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent in = new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(in);
+                //Intent in = new Intent(MainActivity.this, HomeActivity.class);
+                //startActivity(in);
+                String usernameSementara = etUsername.getText().toString();
+                String passwordSementara = etPassword.getText().toString();
+                if ((usernameSementara.equals("admin")) && (passwordSementara.equals("1234"))){
+                    Intent in = new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(in);
+                }
             }
         });
 
@@ -71,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             @Override
             public void onClick(View view) {
                 Intent in = new Intent(MainActivity.this, LoginODPActivity.class);
+                //finish();
                 startActivity(in);
             }
         });
@@ -81,55 +87,7 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
 
         PostResponseAsyncTask ambilToken = new PostResponseAsyncTask(MainActivity.this, postData, this);
         ambilToken.execute("http://cdc-backend.yacanet.com/v1/auth/login");
-
-        // LOKASI
-        Dexter.withActivity(this)
-                .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-                .withListener(new PermissionListener() {
-                    @Override
-                    public void onPermissionGranted(PermissionGrantedResponse response) {
-                        updateLocation();
-                    }
-
-                    @Override
-                    public void onPermissionDenied(PermissionDeniedResponse response) {
-                        Toast.makeText(MainActivity.this, "Anda harus mengaktifkan izin ini", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(PermissionRequest permission, PermissionToken token) {
-
-                    }
-                }).check();
     }
-
-    private void updateLocation() {
-        buildLocationRequest();
-
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        fusedLocationProviderClient.requestLocationUpdates(locationRequest, getPendingIntent());
-    }
-
-    private PendingIntent getPendingIntent() {
-        Intent intent = new Intent(this, MyLocationService.class);
-        intent.setAction(MyLocationService.ACTION_PROCESS_UPDATE);
-
-        return PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-    }
-
-    private void buildLocationRequest() {
-        locationRequest = new LocationRequest();
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setInterval(3000);
-        locationRequest.setFastestInterval(1000);
-        locationRequest.setSmallestDisplacement(10f);
-
-    }
-
-    // END LOKASI
 
     @Override
     public void processFinish(String s) {
@@ -145,5 +103,22 @@ public class MainActivity extends AppCompatActivity implements AsyncResponse {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //In onresume fetching value from sharedpreference
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME,Context.MODE_PRIVATE);
+
+        //Fetching the boolean value form sharedpreferences
+        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
+
+        //If we will get true
+        if(loggedIn){
+            //We will start the Profile Activity
+            Intent intent = new Intent(MainActivity.this, ProfilODPActivity.class);
+            startActivity(intent);
+        }
     }
 }

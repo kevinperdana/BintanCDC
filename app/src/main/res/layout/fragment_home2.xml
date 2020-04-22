@@ -1,14 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".HomeFragment"
+    android:background="@color/colorWhite" >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- TOTAL ODP KESELURUHAN -->
+    <RelativeLayout
+        android:id="@+id/relatif2"
+        android:background="@color/colorGreen"
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:layout_below="@+id/relatif1"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:id="@+id/tok"
+            style="@style/Base.TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:focusable="false"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="Total ODP Keseluruhan"
+            android:textColor="@color/colorWhite" />
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:background="@color/colorOrange"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:orientation="vertical">
+            
+            <TextView
+                android:id="@+id/tvBanyakPasien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="28dp"
+                android:text="0"
+                android:layout_marginTop="7dp"
+                android:textColor="@color/colorBlack"/>
+
+            <TextView
+                android:id="@+id/orang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="13dp"
+                android:text="orang"
+                android:textColor="@color/colorBlack"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- STATUS GPS OPD -->
+    <RelativeLayout
+        android:id="@+id/relatif3"
+        android:background="@color/colorBlue"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relatif2"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:id="@+id/statusgpsopd"
+            style="@style/Base.TextAppearance.AppCompat.Large"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:focusable="false"
+            android:paddingLeft="8dp"
+            android:paddingTop="6dp"
+            android:paddingRight="8dp"
+            android:text="Status GPS OPD"
+            android:textColor="@color/colorWhite" />
+
+        <TextView
+            android:id="@+id/tvTotalGPS"
+            style="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/statusgpsopd"
+            android:focusable="false"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="Total X GPS"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+    </RelativeLayout>
+
+    <fragment
+        android:id="@+id/google_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="HOME" />
+        android:layout_below="@id/relatif3"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin" />
 
-</FrameLayout>
+</RelativeLayout>

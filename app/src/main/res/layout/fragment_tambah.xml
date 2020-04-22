@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".TambahFragment"
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="false"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/colorWhite">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_below="@+id/toolbar"
         android:id="@+id/lin"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -55,10 +53,45 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold"
-            android:text="No. HP"
+            android:text="Tempat Lahir"
             android:id="@+id/c"
             android:textColor="@color/colorBlack"
             android:layout_marginLeft="5dp"/>
+
+        <EditText
+            android:id="@+id/etTempatLahir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold"
+            android:text="Tanggal Lahir"
+            android:id="@+id/d"
+            android:textColor="@color/colorBlack"
+            android:layout_marginLeft="5dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="Tentukan Tanggal Lahir"
+            android:id="@+id/btnTentukanTglLahir"
+            android:background="@color/colorLightGrey"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold"
+            android:text="No. HP"
+            android:id="@+id/e"
+            android:textColor="@color/colorBlack"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
         <EditText
             android:id="@+id/etNoHP"
@@ -72,7 +105,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold"
             android:text="Alamat"
-            android:id="@+id/d"
+            android:id="@+id/f"
             android:textColor="@color/colorBlack"
             android:layout_marginLeft="5dp"/>
 
@@ -88,7 +121,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold"
             android:text="Kecamatan"
-            android:id="@+id/e"
+            android:id="@+id/g"
             android:textColor="@color/colorBlack"
             android:layout_marginLeft="5dp"/>
 
@@ -105,7 +138,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textStyle="bold"
             android:text="Kelurahan"
-            android:id="@+id/f"
+            android:id="@+id/h"
             android:textColor="@color/colorBlack"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="@dimen/activity_vertical_margin"/>
@@ -122,9 +155,12 @@
             android:text="Simpan"
             android:id="@+id/btnSimpan"
             android:background="@color/colorAccent"
-            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+            android:layout_marginTop="@dimen/activity_vertical_margin" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="80dp"/>
 
     </LinearLayout>
 
-</FrameLayout>
+</ScrollView>

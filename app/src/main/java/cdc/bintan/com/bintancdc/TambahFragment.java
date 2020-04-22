@@ -1,6 +1,9 @@
 package cdc.bintan.com.bintancdc;
 
 
+import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.LoginFilter;
@@ -12,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,6 +30,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,13 +45,19 @@ public class TambahFragment extends Fragment {
 
     Spinner spKecamatan, spKelurahan;
     Button btnSimpanODP;
-    EditText etNIK, etNamaODP, etNoHP, etAlamat;
-    String nik, namaODP, noHP, alamat, idKecamatan, namaKecamatan, idKelurahan, namaKelurahan;
+    EditText etNIK, etNamaODP, etNoHP, etAlamat, etTempatLahir;
+    String nik, namaODP, noHP, alamat, idKecamatan, namaKecamatan, idKelurahan, namaKelurahan, tempatLahir;
 
     String ambilTokenSekarang;
     final String LOGATS = "CekATS";
     final String LOGSIMPAN = "CekSimpan";
     final String LOGSIMPANGAGAL = "CekSimpanGagal";
+
+    Button btnTentukanTglLahir;
+    String tanggalLahir;
+    final String LOGTGL = "CekTgl";
+    final String LOGFORMATTGL = "CekFormatTgl";
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     public TambahFragment() {
         // Required empty public constructor
@@ -56,6 +67,39 @@ public class TambahFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_tambah, container, false);
+
+        // TOMBOL TANGGAL LAHIR
+        btnTentukanTglLahir = (Button) rootView.findViewById(R.id.btnTentukanTglLahir);
+        btnTentukanTglLahir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int tahun = cal.get(Calendar.YEAR);
+                int bulan = cal.get(Calendar.MONTH);
+                int hari= cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(getActivity(),android.R.style.Theme_Holo_Light_Dialog_MinWidth, mDateSetListener,
+                        tahun,bulan,hari);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int tahun, int bulan, int hari) {
+                bulan = bulan + 1;
+                Log.d(LOGTGL, "DataSet Tanggal : "+ tahun + "-" + bulan + "-" + hari);
+
+                String formatHari = String.format("%02d", hari);
+                String formatBulan = String.format("%02d", bulan);
+                tanggalLahir = tahun + "-" + formatBulan + "-" + formatHari;
+                Log.d(LOGFORMATTGL, tanggalLahir);
+
+                btnTentukanTglLahir.setText(tanggalLahir);
+            }
+        };
+
 
         // SPINNER KECAMATAN
         spKecamatan = (Spinner) rootView.findViewById(R.id.spinnerKecamatan);
@@ -184,6 +228,7 @@ public class TambahFragment extends Fragment {
         etNamaODP = (EditText) rootView.findViewById(R.id.etNamaODP);
         etNoHP = (EditText) rootView.findViewById(R.id.etNoHP);
         etAlamat = (EditText) rootView.findViewById(R.id.etAlamat);
+        etTempatLahir = (EditText) rootView.findViewById(R.id.etTempatLahir);
 
         btnSimpanODP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,6 +237,7 @@ public class TambahFragment extends Fragment {
                 namaODP = etNamaODP.getText().toString();
                 noHP = etNoHP.getText().toString();
                 alamat = etAlamat.getText().toString();
+                tempatLahir = etTempatLahir.getText().toString();
 
                 RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
                 String urlSimpanODP = "http://cdc-backend.yacanet.com/v1/setting/userspasien/store";
@@ -211,7 +257,7 @@ public class TambahFragment extends Fragment {
                     @Override
                     protected Map<String,String> getParams(){
                         Map<String,String> params = new HashMap<String,String>();
-                        params.put("username", nik);
+                        params.put("username",nik);
                         params.put("password","123");
                         params.put("name",namaODP);
                         params.put("nomor_hp",noHP);
@@ -221,6 +267,8 @@ public class TambahFragment extends Fragment {
                         params.put("PmDesaID",idKelurahan);
                         params.put("Nm_Desa",namaKelurahan);
                         params.put("foto","storage/images/users/no_photo.png");
+                        params.put("tempat_lahir",tempatLahir);
+                        params.put("tanggal_lahir",tanggalLahir);
                         return params;
                     }
 
@@ -228,6 +276,7 @@ public class TambahFragment extends Fragment {
                     public Map<String, String> getHeaders() throws AuthFailureError {
                         Map<String, String> headers = new HashMap<>();
                         String auth = "Bearer "+ambilTokenSekarang;
+                        //String auth = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vY2RjLWJhY2tlbmQueWFjYW5ldC5jb20vdjEvYXV0aC9sb2dpbiIsImlhdCI6MTU4NzMyMTIzOSwiZXhwIjoxNTg3MzI0ODM5LCJuYmYiOjE1ODczMjEyMzksImp0aSI6Ik5pdEJ3cU8yeDhQWDRaYnAiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.1b0ARevi42u6iCAjbliJbJ2rvFYYH71B874caMMfscM";
                         headers.put("Authorization", auth);
                         return headers;
                     }
